@@ -136,9 +136,11 @@ def handle_history_request():
 
 if __name__ == "__main__":
     import eventlet
+    import os
 
     print("Starting SmartTile IoT Alert System Server...")
     print("Server running on http://localhost:5000")
 
     # Run server with eventlet for production (Render compatible)
-    socketio.run(app, host="0.0.0.0", port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    socketio.run(app, host="0.0.0.0", port=port)
